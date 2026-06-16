@@ -1,0 +1,24 @@
+#############################################
+# Factorio Distribution-With-Credit License #
+#############################################
+
+You're given the rights to:
+- Distribute the mod
+- Distribute any portion of the mod
+- Modify your copy of the mod
+- Distribute your modified copy of the mod (if any) or any portion of it
+- Use the mod and distribute any gameplay of said mod
+
+Under the following conditions:
+- You must give credit to me and the other contributors who originally worked on the mod
+- You must link back to the original mod portal page
+- You cannot make financial gain from this mod,
+  except for using the mod (or any modified version of it) inside the game that is Factorio.
+- You must link back to this license and/or include it directly in all distributed copies of the full mod. (or modified versions of it)
+- All original code, assets, etc. must be distributed under this license
+  Modified code, assets, etc. however, do not have to be distributed under this license.
+- You may not use this mod, it's code, assets or associated text to train or test artificial intellegence models without explicit permission from the author.
+
+License is © Copyright BraveCaperCat 2026
+Lightorio code/localisation is © Copyright BraveCaperCat 2026
+Lightorio graphics are © Copyright BraveCaperCat & ArtGeekMagic 2026

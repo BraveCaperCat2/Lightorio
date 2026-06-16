@@ -1,0 +1,10 @@
+{
+    "name": "Lightorio",
+    "version": "0.1.1",
+    "title": "Lightorio Beta",
+    "author": "BCC",
+    "factorio_version": "2.0",
+    "dependencies": ["base >= 2.0", "(?) quality", "(?) QualityAssurance", "!space-age"],
+    "spoiling_required": true,
+    "description": "An updated technology tree and recipes based on the manipulation of light and optics.\n\nThis mod is currently in beta and only has the first 2 science packs worth of content right now."
+}

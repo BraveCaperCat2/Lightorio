@@ -1,0 +1,22 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Data: 15/06/2026
+  Bugfixes:
+    - Fix issue in changelog
+    - Fix control-stage crash that could happen rarely
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 15/06/2026
+  Major Features:
+    - Initial pre-release.
+  Features:
+    - First two science packs done:
+      - Mundane science pack
+      - Solar science pack
+    - Control stage is almost feature complete:
+      - Solar-powered machines,
+      - Light-generation and light exposure recipes,
+      - Offset positions and rotations,
+      - Support for mirroring,
+      - Light propagation
+      - Light collisions/damage
