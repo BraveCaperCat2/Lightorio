@@ -501,7 +501,7 @@ function propagate_light(tracked_light_entity, t)
                 dest_entity.destroy()
                 return
             end
-        elseif dest_entity.direction == light_entity.direction and string.find(entity.name, "light%-") then
+        elseif dest_entity.direction == light_entity.direction and string.find(dest_entity.name, "light%-") then
             dest_entity.destroy()
         end
     end
