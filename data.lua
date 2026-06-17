@@ -54,6 +54,7 @@ SolarBoilerRecipe.ingredients = {
 SolarBoilerRecipe.results = {
     {amount = 1, name = "li_solar-boiler", type = "item"}
 }
+SolarBoilerRecipe.enabled = false
 data:extend{SolarBoilerRecipe}
 
 local SolarBoiling = {}
