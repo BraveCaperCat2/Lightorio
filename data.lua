@@ -125,5 +125,3 @@ update_pack(
         order = "f"
     }
 )
-
-log(serpent.block(data.raw["technology"]["steam-power"]))

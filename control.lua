@@ -1,7 +1,7 @@
 require("utils")
 
--- Configure starting resources
 function on_init()
+    -- Configure starting resources
     if not remote.interfaces["freeplay"] then
         return
     end
@@ -11,12 +11,27 @@ function on_init()
         ["pistol"] = 1,
         ["firearm-magazine"] = 30
     })
+
+    load_prototype_data()
 end
 
 -- Setup storage variables
 function setup()
     storage.tracked_light_entities = {}
     storage.cached_entities = {}
+end
+
+function load_prototype_data()
+    ---@type table<RecipeID, {light_type: string, amount: int64, specific_direction: defines.direction|false}?>
+    storage.exposure_data_table = prototypes.mod_data["li_exposure-data"].data
+    ---@type table<EntityID, true?>
+    storage.solar_data_table = prototypes.mod_data["li_solar-data"].data
+    ---@type table<EntityID, {active: boolean, offset: int64, rotation: defines.direction}?>
+    storage.machine_light_data_table = prototypes.mod_data["li_light-data"].data["machine"]
+    ---@type table<RecipeID, {active: true, light: string}?>
+    storage.recipe_light_data_table = prototypes.mod_data["li_light-data"].data["recipe"]
+    ---@type table<EntityID, {player: string, other: string}?>
+    storage.hazard_data_table = prototypes.mod_data["li_hazard-data"].data
 end
 
 script.on_init(function()
@@ -29,14 +44,20 @@ script.on_configuration_changed(on_init)
 function on_tick(event)
     local machines = get_entities_with_type({["assembling-machine"] = true, ["furnace"] = true, ["rocket-silo"] = true, ["boiler"] = true})
 
-    ---@type table<RecipeID, {light_type: string, amount: int64, specific_direction: defines.direction|false}?>
-    local ExposureDataTable = prototypes.mod_data["li_exposure-data"].data
-    ---@type table<EntityID, true?>
-    local SolarDataTable = prototypes.mod_data["li_solar-data"].data
-    ---@type table<EntityID, {active: boolean, offset: int64, rotation: defines.direction}?>
-    local MachineLightDataTable = prototypes.mod_data["li_light-data"].data["machine"]
-    ---@type table<RecipeID, {active: true, light: string}?>
-    local RecipeLightDataTable = prototypes.mod_data["li_light-data"].data["recipe"]
+    local ExposureDataTable = storage.exposure_data_table
+    local SolarDataTable = storage.solar_data_table
+    local MachineLightDataTable = storage.machine_light_data_table
+    local RecipeLightDataTable = storage.recipe_light_data_table
+    local HazardDataTable = storage.hazard_data_table
+
+    if not ExposureDataTable or not SolarDataTable or not MachineLightDataTable or not RecipeLightDataTable or not HazardDataTable then
+        load_prototype_data()
+        ExposureDataTable = storage.exposure_data_table
+        SolarDataTable = storage.solar_data_table
+        MachineLightDataTable = storage.machine_light_data_table
+        RecipeLightDataTable = storage.recipe_light_data_table
+        HazardDataTable = storage.hazard_data_table
+    end
 
     for _,machine in pairs(machines) do
         -- Check that the machine is valid
@@ -381,7 +402,8 @@ function on_tick(event)
         end
         local source = get_entity_unit_number(tracked_light_entity.source)
 
-        local entity = get_entity_unit_number_typed(tracked_light_entity.entity, "simple-entity-with-owner")
+        if not storage.cached_entities["simple-entity-with-owner"] then goto continue end
+        local entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity]
 
         -- Ensure that our entities exist and are valid
         if (not source) or (not source.valid) or (not entity) or (not entity.valid) then
@@ -437,16 +459,18 @@ function on_tick(event)
     for i,tracked_light_entity in pairs(light_entities) do
         local source = tracked_light_entity.source
 
-        local entity = get_entity_unit_number_typed(tracked_light_entity.entity, "simple-entity-with-owner")
+        if not storage.cached_entities["simple-entity-with-owner"] then goto continue end
+        local entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity]
         
         local distance = tracked_light_entity.distance
-        if first_gaps[source] and (first_gaps[source] <= tracked_light_entity.distance) then
+        if first_gaps[source] and (first_gaps[source] <= distance) then
             if entity and entity.valid then
                 ---@cast entity LuaEntity
                 entity.destroy()
                 table.insert(soft_removed, i)
             end
         end
+        ::continue::
     end
 
     -- Remove invalid light entities
@@ -461,7 +485,7 @@ function on_tick(event)
 
     -- Process collisions with other entities
     for _,tracked_light_entity in pairs(light_entities) do
-        light_collisions(tracked_light_entity)
+        light_collisions(tracked_light_entity, HazardDataTable)
     end
 end
 
@@ -469,7 +493,8 @@ end
 ---@param tracked_light_entity {source: uint64, entity: uint64, distance: uint32}
 ---@param t {source: uint64, entity: uint64}[]
 function propagate_light(tracked_light_entity, t)
-    local light_entity = get_entity_unit_number_typed(tracked_light_entity.entity, "simple-entity-with-owner")
+    if not storage.cached_entities["simple-entity-with-owner"] then return end
+    local light_entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity]
 
     -- Check that the light entity provided to us isn't nil
     if light_entity == nil then
@@ -535,8 +560,9 @@ function propagate_light(tracked_light_entity, t)
 end
 
 -- Runs collision checks for the light entity
-function light_collisions(tracked_light_entity)
-    local light_entity = get_entity_unit_number_typed(tracked_light_entity.entity, "simple-entity-with-owner")
+function light_collisions(tracked_light_entity, HazardDataTable)
+    if not storage.cached_entities["simple-entity-with-owner"] then return end
+    local light_entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity]
 
     -- Ensure that the light entity is not nil
     if not light_entity or not light_entity.valid then
@@ -577,7 +603,7 @@ function light_collisions(tracked_light_entity)
         {math.ceil(position["x"]), math.ceil(position["y"])}
     }
 
-    local HazardData = prototypes.mod_data["li_hazard-data"].data[light_entity.name]
+    local HazardData = HazardDataTable[light_entity.name]
     
     -- Apply damages
     for _,entity in pairs(target_entities) do
@@ -585,7 +611,7 @@ function light_collisions(tracked_light_entity)
             goto continue
         end
 
-        local in_player_box = is_in_box(entity.position, player_box)
+        local in_player_box = is_in_box({[1] = entity.position["x"], [2] = entity.position["y"]}, player_box)
 
         local damage = 0
         if removed_entities[entity.type] and in_player_box then
@@ -684,7 +710,7 @@ function get_entities_with_type(types)
     local inserted_unit_numbers = {}
 
     for i,entity in pairs(entities) do
-        if not entity.valid or inserted_unit_numbers[entity.entity.unit_number] then
+        if not entity.entity.valid or inserted_unit_numbers[entity.entity.unit_number] then
             goto continue
         end
         out[count] = entity.entity
