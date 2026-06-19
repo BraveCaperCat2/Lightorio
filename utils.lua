@@ -1,5 +1,5 @@
----@diagnostic disable: undefined-doc-name
 require("util")
+---@diagnostic disable: undefined-doc-name
 ---@diagnostic disable: missing-return
 
 ---@param object any
