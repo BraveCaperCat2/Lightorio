@@ -1,9 +1,22 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.1.1
-Data: 15/06/2026
+Version: 0.1.2
+Date: 19/06/2026
+  Changes:
+    - Various internal code changes.
+    - Slightly better performance.
   Bugfixes:
-    - Fix issue in changelog
-    - Fix control-stage crash that could happen rarely
+    - Fix issue in changelog.
+    - Fix control-stage that happened when a machine created a light entity.
+    - Fix issue where the solar boiler could be crafted before unlocking it.
+    - Fix issue in localisation.
+    - Fix another issue that happened when a machine created a light entity.
+    - Fix internal syntax-highlighting problems.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Date: 15/06/2026
+  Bugfixes:
+    - Fix issue in changelog.
+    - Fix control-stage crash that could happen rarely.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 15/06/2026
