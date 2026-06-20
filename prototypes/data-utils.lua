@@ -7,7 +7,7 @@ local use_prerelease_placeholder_graphics = false
 ---@param path data.FileName
 ---@return data.FileName
 function image(path)
-    if use_prerelease_placeholder_graphics and string.find(path, "^__Lightorio__") then
+    if use_prerelease_placeholder_graphics and string.find(path, "^__ModLightorio__") then
         return (string.gsub(path, "/([a-zA-Z0-9_-]+)%.png$", "/delete_before_upload/%1.png", 1))
     end
     return path
@@ -25,17 +25,17 @@ function update_pack(old_pack, new_info)
     if new_info.icon then
         old_pack.icons = {
             {
-                icon = image("__Lightorio__/graphics/icons/glass_bottle.png")
+                icon = image("__ModLightorio__/graphics/icons/glass_bottle.png")
             },
             new_info.icon
         }
     else
         old_pack.icons = {
             {
-                icon = image("__Lightorio__/graphics/icons/glass_bottle.png")
+                icon = image("__ModLightorio__/graphics/icons/glass_bottle.png")
             },
             {
-                icon = image("__Lightorio__/graphics/icons/bottle_filler.png"),
+                icon = image("__ModLightorio__/graphics/icons/bottle_filler.png"),
                 tint = new_info.colour
             }
         }
@@ -106,12 +106,12 @@ function make_light(colour, name, hazard_info)
     ---@diagnostic disable-next-line: unknown-cast-variable
     ---@cast Light data.SimpleEntityWithOwnerPrototype
     
-    local HorizontalBase = image("__Lightorio__/graphics/entity/light_horizontal.png")
-    local EastOverlay = image("__Lightorio__/graphics/entity/light_overlay_east.png")
-    local WestOverlay = image("__Lightorio__/graphics/entity/light_overlay_west.png")
-    local VerticalBase = image("__Lightorio__/graphics/entity/light_vertical.png")
-    local NorthOverlay = image("__Lightorio__/graphics/entity/light_overlay_north.png")
-    local SouthOverlay = image("__Lightorio__/graphics/entity/light_overlay_south.png")
+    local HorizontalBase = image("__ModLightorio__/graphics/entity/light_horizontal.png")
+    local EastOverlay = image("__ModLightorio__/graphics/entity/light_overlay_east.png")
+    local WestOverlay = image("__ModLightorio__/graphics/entity/light_overlay_west.png")
+    local VerticalBase = image("__ModLightorio__/graphics/entity/light_vertical.png")
+    local NorthOverlay = image("__ModLightorio__/graphics/entity/light_overlay_north.png")
+    local SouthOverlay = image("__ModLightorio__/graphics/entity/light_overlay_south.png")
     
     Light.picture = {
         east = {

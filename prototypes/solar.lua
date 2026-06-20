@@ -53,7 +53,7 @@ CopperPowder.auto_recycle = false
 CopperPowder.pictures = nil
 CopperPowder.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.857, g = 0.625, b = 0.616, a = 1}
     }
 }
@@ -67,7 +67,7 @@ SilverPowder.auto_recycle = false
 SilverPowder.pictures = nil
 SilverPowder.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.725, g = 0.860, b = 0.964, a = 1}
     }
 }
@@ -217,7 +217,7 @@ IronPowder.auto_recycle = false
 IronPowder.pictures = nil
 IronPowder.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.638, g = 0.779, b = 0.987, a = 1}
     }
 }
@@ -231,7 +231,7 @@ NickelPowder.auto_recycle = false
 NickelPowder.pictures = nil
 NickelPowder.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.336, g = 0.974, b = 0.974, a = 1}
     }
 }
@@ -303,7 +303,7 @@ local ElectricNickelPowder = table.deepcopy(data.raw["item"]["li_nickel-powder"]
 ElectricNickelPowder.name = "li_electric-nickel-powder"
 ElectricNickelPowder.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.354, g = 0.992, b = 0.992, a = 1}
     },
     {
@@ -547,7 +547,7 @@ IndustrialGradeChromomixtureBase.stack_size = 50
 ---@cast IndustrialGradeChromomixtureBase data.ItemPrototype
 IndustrialGradeChromomixtureBase.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.525, g = 0.575, b = 0.730, a = 1}
     }
 }
@@ -581,7 +581,7 @@ IndustrialGradeChromomixture.stack_size = 50
 ---@cast IndustrialGradeChromomixture data.ItemPrototype
 IndustrialGradeChromomixture.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.457, g = 0.507, b = 0.640, a = 1}
     }
 }
@@ -667,7 +667,7 @@ SolarExposedChromomixture.order = "b[li_exposed-chromomixture-2]"
 SolarExposedChromomixture.subgroup = "li_chromomixture-2"
 SolarExposedChromomixture.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.972, g = 0.941, b = 0.360, a = 1.000}
     }
 }

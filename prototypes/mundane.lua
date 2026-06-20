@@ -102,7 +102,7 @@ data:extend{GlassProductsCategory}
 local Sand = table.deepcopy(data.raw["item"]["stone"])
 Sand.name = "li_sand"
 Sand.pictures = nil
-Sand.icon = image("__Lightorio__/graphics/icons/sand.png")
+Sand.icon = image("__ModLightorio__/graphics/icons/sand.png")
 Sand.auto_recycle = mods["quality"] and false or nil
 Sand.order = "a[li_sand]"
 Sand.subgroup = "li_glass-products"
@@ -189,7 +189,7 @@ LowGradeChromomixture.stack_size = 25
 ---@cast LowGradeChromomixture data.ItemPrototype
 LowGradeChromomixture.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.457, g = 0.507, b = 0.640, a = 1}
     }
 }
@@ -231,7 +231,7 @@ GlassBottle.order = "e[li_glass-bottle]"
 GlassBottle.subgroup = "li_glass-products"
 GlassBottle.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/glass_bottle.png")
+        icon = image("__ModLightorio__/graphics/icons/glass_bottle.png")
     }
 }
 data:extend{GlassBottle}
@@ -343,7 +343,7 @@ MundaneExposedChromomixture.order = "a[li_exposed-chromomixture-1]"
 MundaneExposedChromomixture.subgroup = "li_chromomixture"
 MundaneExposedChromomixture.icons = {
     {
-        icon = image("__Lightorio__/graphics/icons/sand.png"),
+        icon = image("__ModLightorio__/graphics/icons/sand.png"),
         tint = {r = 0.714, g = 0.793, b = 1.000, a = 1}
     }
 }

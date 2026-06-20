@@ -120,7 +120,7 @@ update_pack(
     {
         name = "li_spectral-science-pack",
         icon = {
-            icon = image("__Lightorio__/graphics/icons/bottle_filler_spectral.png")
+            icon = image("__ModLightorio__/graphics/icons/bottle_filler_spectral.png")
         },
         order = "f"
     }

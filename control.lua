@@ -639,7 +639,7 @@ function get_damage_for(damage_string)
 end
 
 -- Refreshes the entities cache
--- Can be called using the command /c __Lightorio__ refresh_all_entities()
+-- Can be called using the command /c __ModLightorio__ refresh_all_entities()
 -- Warning: May cause severe lag
 function refresh_all_entities()
     storage.cached_entities = {}
