@@ -17,7 +17,7 @@ Under the following conditions:
 - You must link back to this license and/or include it directly in all distributed copies of the full mod. (or modified versions of it)
 - All original code, assets, etc. must be distributed under this license
   Modified code, assets, etc. however, do not have to be distributed under this license.
-- You may not use this mod, it's code, assets or associated text to train or test artificial intellegence models without explicit permission from the author.
+- You may not use this mod, it's code, assets or associated text to train or test artificial intelligence models without explicit permission from the author.
 
 License is © Copyright BraveCaperCat 2026
 Lightorio code/localisation is © Copyright BraveCaperCat 2026
