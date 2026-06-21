@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.4
+Date: 21/06/2026
+  Bugfixes:
+    - Fix an issue where light would not propagate outward
+    - Fix a potential crash that would occur during light propagation
+---------------------------------------------------------------------------------------------------
 Version: 0.1.3
 Date: 20/06/2026
   Bugfixes:
