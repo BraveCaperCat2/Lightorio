@@ -403,7 +403,7 @@ function on_tick(event)
         local source = get_entity_unit_number(tracked_light_entity.source)
 
         if not storage.cached_entities["simple-entity-with-owner"] then goto continue end
-        local entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity]
+        local entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity].entity
 
         -- Ensure that our entities exist and are valid
         if (not source) or (not source.valid) or (not entity) or (not entity.valid) then
@@ -460,7 +460,7 @@ function on_tick(event)
         local source = tracked_light_entity.source
 
         if not storage.cached_entities["simple-entity-with-owner"] then goto continue end
-        local entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity]
+        local entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity].entity
         
         local distance = tracked_light_entity.distance
         if first_gaps[source] and (first_gaps[source] <= distance) then
@@ -494,7 +494,7 @@ end
 ---@param t {source: uint64, entity: uint64}[]
 function propagate_light(tracked_light_entity, t)
     if not storage.cached_entities["simple-entity-with-owner"] then return end
-    local light_entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity]
+    local light_entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity].entity
 
     -- Check that the light entity provided to us isn't nil
     if light_entity == nil then
@@ -562,7 +562,7 @@ end
 -- Runs collision checks for the light entity
 function light_collisions(tracked_light_entity, HazardDataTable)
     if not storage.cached_entities["simple-entity-with-owner"] then return end
-    local light_entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity]
+    local light_entity = storage.cached_entities["simple-entity-with-owner"][tracked_light_entity.entity].entity
 
     -- Ensure that the light entity is not nil
     if not light_entity or not light_entity.valid then
